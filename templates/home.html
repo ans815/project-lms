@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Library Dashboard</title>
+  <!-- SweetAlert2 for dynamic popups -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background-color: #f4f6f9;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(90deg, #4b6cb7, #182848);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 25px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .logo img {
+      width: 35px;
+      margin-right: 10px;
+    }
+
+    .profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .profile img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Main Layout */
+    .container {
+      display: flex;
+      height: 80vh;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .content {
+      flex: 1;
+      padding: 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .content h2 {
+      margin-top: 0;
+    }
+
+    /* Right Panel */
+    .right-panel {
+      width: 260px;
+      background-color: #fff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      padding: 25px;
+      position: sticky;
+      top: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .right-panel:hover {
+      transform: translateY(-5px);
+    }
+
+    .right-panel h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #182848;
+    }
+
+    /* Buttons */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn1 {
+      background-color: #007bff;
+    }
+
+    .btn1:hover {
+      background-color: #0056b3;
+    }
+
+    .btn2 {
+      background-color: #28a745;
+    }
+
+    .btn2:hover {
+      background-color: #1e7e34;
+    }
+
+    .btn3 {
+      background-color: #ffc107;
+      color: #182848;
+    }
+
+    .btn3:hover {
+      background-color: #e0a800;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #343a40;
+      color: white;
+      text-align: center;
+      padding: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">
+      <a href="https://www.flaticon.com/free-icons/book" target="_blank" style="color: #fff; text-decoration: underline;">📚</a>
+      Library Dashboard
+    </div>
+    <div class="profile">
+      <!-- <img src="{{ url_for('static', filename='images/profile.png') }}" alt="Profile Picture"> -->
+  <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" 
+     alt="Profile Icon" style="width:40px; height:40px; border-radius:50%;">
+     <!-- <img src="https://ui-avatars.com/api/?name=A+G&background=4b6cb7&color=fff&size=128" 
+     alt="Profile Avatar" style="width:40px; height:40px; border-radius:50%;"> -->
+    </div>
+  </div>
+
+  <!-- Main Section -->
+  <div class="container">
+
+    <!-- Left Content -->
+    <div class="content">
+      <h2>Welcome to Library Management System</h2>
+      <p>
+        This dashboard allows you to manage books, students, and authors.
+        Use the action buttons on the right side to perform operations quickly.
+      </p>
+    </div>
+
+    <!-- Right Side Panel -->
+    <div class="right-panel">
+      <h3>Quick Actions</h3>
+      <a href="{{ url_for('student.student_register') }}" class="btn btn2">Register Student</a>
+      <a href="{{ url_for('author.author_register') }}" class="btn btn3">Register Author</a>
+      <a href="{{ url_for('student.all_students_data') }}" class="btn btn1">Show Students</a>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    © 2026 Library Management System | Designed by You 🚀
+  </div>
+
+  <!-- JS: Dynamic Greeting & SweetAlert Buttons -->
+  <script>
+    // Add a dynamic greeting message
+    document.addEventListener('DOMContentLoaded', () => {
+      const greeting = document.createElement('p');
+      greeting.textContent = "Hello, Anshu! Ready to manage your library today?";
+      greeting.style.fontWeight = "bold";
+      greeting.style.fontSize = "18px";
+      greeting.style.marginBottom = "15px";
+      document.querySelector('.content').prepend(greeting);
+
+      // SweetAlert for button clicks
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          Swal.fire({
+            title: 'Redirecting...',
+            text: 'You will be taken to the form shortly!',
+            icon: 'info',
+            timer: 1000,
+            showConfirmButton: false
+          }).then(() => {
+            window.location.href = btn.href;
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>

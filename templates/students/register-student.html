@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Registration</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  /* Animated Gradient Background */
+  background: linear-gradient(-45deg,#667eea,#764ba2,#6dd5ed,#2193b0);
+  background-size:400% 400%;
+  animation:gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+
+}
+
+/* Container */
+.container{
+  width:420px;
+  padding:35px;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(15px);
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+  animation:fadeIn 1s ease;
+}
+
+/* Fade Animation */
+
+@keyframes fadeIn{
+  from{
+  opacity:0;
+  transform:translateY(40px);
+  }
+  to{
+  opacity:1;
+  transform:translateY(0);
+  }
+}
+
+.container h1{
+  text-align:center;
+  color:white;
+  margin-bottom:25px;
+  font-weight:600;
+}
+
+/* Labels */
+
+label{
+  color:white;
+  font-size:14px;
+  margin-bottom:5px;
+  display:block;
+}
+
+/* Inputs */
+
+input{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border:none;
+  border-radius:8px;
+  background:rgba(255,255,255,0.85);
+  font-size:14px;
+  transition:0.3s;
+}
+
+input:focus{
+  outline:none;
+  background:white;
+  box-shadow:0 0 8px rgba(0,123,255,0.7);
+  transform:scale(1.02);
+}
+
+/* Buttons */
+.buttons{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+}
+
+button{
+  width:48%;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:500;
+  transition:0.3s;
+}
+
+/* Register Button */
+
+button[type="submit"]{
+  background:linear-gradient(45deg,#4facfe,#00f2fe);
+  color:white;
+
+}
+
+button[type="submit"]:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Reset Button */
+
+button[type="reset"]{
+  background:#6c757d;
+  color:white;
+}
+
+button[type="reset"]:hover{
+  background:#555;
+}
+
+/* Login link */
+
+.login-link{
+  text-align:center;
+  margin-top:18px;
+  color:white;
+}
+
+.login-link a{
+  color:white;
+  font-weight:600;
+  text-decoration:none;
+}
+
+.login-link a:hover{
+  text-decoration:underline;
+}
+
+/* Success and Error Message */
+.message{
+  text-align:center;
+  padding:10px;
+  margin-bottom:15px;
+  border-radius:6px;
+  font-size:14px;
+}
+
+.success{
+  background:#d4edda;
+  color:#155724;
+
+}
+
+.error{
+  background:#f8d7da;
+  color:#721c24;
+}
+
+/* Mobile Responsive */
+
+@media(max-width:450px){
+  .container{
+  width:90%;
+  }
+}
+</style>
+</head>
+
+<body>
+  <div class="container">
+  <h1>Student Registration</h1>
+  <!-- Dynamic message (Flask / Django) -->
+  {% if message %}
+  <div class="message {{message_type}}">
+  {{message}}
+  </div>
+  {% endif %}
+
+<form method="POST">
+      <label for="stu_name">Student Name</label>
+      <input type="text" name="stu_name" id="stu_name" placeholder="Enter your full name" required>
+
+      <label for="stu_age">Student Age</label>
+      <input type="number" name="stu_age" id="stu_age" placeholder="Enter your age" min="5" max="100" required>
+
+      <label for="stu_email">Email</label>
+      <input type="email" name="stu_email" id="stu_email" placeholder="Enter your email" required>
+
+      <label for="stu_phone">Mobile Number</label>
+      <input type="tel" name="stu_phone" id="stu_phone" placeholder="Enter your mobile number" pattern="[0-9]{10}" required>
+
+      <label for="stu_address">Address</label>
+      <input type="text" name="stu_address" id="stu_address" placeholder="Enter your address" required>
+
+      <label for="stu_password">Password</label>
+      <input type="password" name="stu_password" id="stu_password" placeholder="Enter password" required>
+
+      <div class="buttons">
+        <button type="submit">Register</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+
+  <div class="login-link">
+
+  Already have account?
+  <a href="/login">Login</a>
+</div>
+</div>
+</body>
+</html>

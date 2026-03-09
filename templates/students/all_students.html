@@ -1,0 +1,50 @@
+
+<h1 style="text-align: center;">All Students</h1>
+
+<table cellpadding="3" border="1" style="width: 100%; border-collapse: collapse;">
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Age</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Address</th>
+<th colspan="3">Action</th>
+</tr>
+
+{% for student in students %}
+
+<tr>
+<td>{{ student.id }}</td>
+<td>{{ student.stu_name }}</td>
+<td>{{ student.stu_age }}</td>
+<td>{{ student.stu_email }}</td>
+<td>{{ student.stu_phone }}</td>
+<td>{{ student.stu_address }}</td>
+
+<td>
+<a href="{{ url_for('student.students_details', id=student.id) }}">
+<button>Read</button>
+</a>
+</td>
+
+<td>
+<a href="">
+<button>Delete</button>
+</a>
+</td>
+
+<td>
+<a href="">
+<button>Update</button>
+</a>
+</td>
+
+</tr>
+
+</tr>
+
+{% endfor %}
+
+</table>
