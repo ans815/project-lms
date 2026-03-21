@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>All Students</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial;
+    }
+
+    body {
+      background: linear-gradient(135deg, #eef2f7, #dce7f3);
+      min-height: 100vh;
+    }
+
+    /* NAVBAR */
+
+    .navbar {
+      background: linear-gradient(45deg, #4b6cb7, #182848);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 35px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-buttons a {
+      text-decoration: none;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.15);
+      transition: .3s;
+      font-size: 14px;
+    }
+
+    .nav-buttons a:hover {
+      background: white;
+      color: #182848;
+    }
+
+    /* HEADER */
+
+    .page-header {
+      width: 95%;
+      margin: 25px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .page-header h2 {
+      color: #333;
+    }
+
+    /* SEARCH */
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-box input {
+      padding: 10px 35px 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .search-box i {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      color: #555;
+    }
+
+    /* TABLE */
+
+    .table-container {
+
+      width: 95%;
+
+      margin: auto;
+
+      background: rgba(255, 255, 255, 0.8);
+
+      backdrop-filter: blur(10px);
+
+      padding: 25px;
+
+      border-radius: 14px;
+
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 750px;
+    }
+
+    th,
+    td {
+      padding: 14px;
+      text-align: center;
+    }
+
+    th {
+      background: #4b6cb7;
+      color: white;
+      font-size: 15px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #eee;
+    }
+
+    tr:nth-child(even) {
+      background: #f8f9ff;
+    }
+
+    tr:hover {
+      background: #eaf0ff;
+      transition: .2s;
+    }
+
+    /* ACTION BUTTONS */
+
+    .action-btn {
+
+      border: none;
+
+      padding: 7px 14px;
+
+      border-radius: 8px;
+
+      font-size: 13px;
+
+      cursor: pointer;
+
+      margin: 3px;
+
+      color: white;
+
+      transition: .2s;
+
+    }
+
+    .read {
+      background: linear-gradient(45deg, #2ecc71, #27ae60);
+    }
+
+    .delete {
+      background: linear-gradient(45deg, #e74c3c, #c0392b);
+    }
+
+    .update {
+      background: linear-gradient(45deg, #f39c12, #d68910);
+    }
+
+    .action-btn:hover {
+      transform: scale(1.08);
+    }
+
+    /* MOBILE CARD VIEW */
+
+    @media(max-width:768px) {
+
+      table,
+      thead,
+      tbody,
+      th,
+      td,
+      tr {
+        display: block;
+        width: 100%;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        background: white;
+        margin-bottom: 15px;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      td {
+        text-align: left;
+        padding: 8px;
+      }
+
+      td::before {
+        font-weight: bold;
+        display: block;
+        color: #555;
+      }
+
+      td:nth-child(1)::before {
+        content: "ID";
+      }
+
+      td:nth-child(2)::before {
+        content: "Name";
+      }
+
+      td:nth-child(3)::before {
+        content: "Age";
+      }
+
+      td:nth-child(4)::before {
+        content: "Email";
+      }
+
+      td:nth-child(5)::before {
+        content: "Phone";
+      }
+
+      td:nth-child(6)::before {
+        content: "Address";
+      }
+
+      td:nth-child(7)::before {
+        content: "Action";
+      }
+
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <div class="navbar">
+
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png">
+      Library System
+    </div>
+
+    <div class="nav-buttons">
+      <a href="/"><i class="fa fa-home"></i> Home</a>
+      <a href="#"><i class="fa fa-book"></i> Books</a>
+      <a href="#"><i class="fa fa-chart-line"></i> Dashboard</a>
+    </div>
+
+  </div>
+
+
+  {% if authors %}
+
+  <div class="page-header">
+
+    <h2>📚 Author Records</h2>
+
+    <div class="search-box">
+      <input type="text" placeholder="Search student...">
+      <i class="fa fa-search"></i>
+    </div>
+
+  </div>
+
+  <div class="table-container">
+
+    <div class="table-responsive">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Action</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          {% for author in authors %}
+
+          <tr>
+
+            <td>{{ author.id }}</td>
+            <td>{{ author.auth_name }}</td>
+            <td>{{ author.auth_age }}</td>
+            <td>{{ author.auth_email }}</td>
+            <td>{{ author.auth_phone }}</td>
+            <td>{{ author.auth_address }}</td>
+
+            <td>
+              <a href="{{url_for('author.authors_details' , id = author.id)}}">
+                <button class="action-btn read">
+                  <i class="fa fa-eye"></i> Read
+                </button>
+              </a>
+
+              <a href="{{url_for('author.delete_author', id = author.id )}}">
+                <button class="action-btn delete">
+                  <i class="fa fa-trash"></i> Delete
+                </button>
+              </a>
+
+              <a href="{{ url_for('author.update_author' , id=author.id )}}">
+                <button class="action-btn update">
+                  <i class="fa fa-pen"></i> Update
+                </button>
+              </a>
+            </td>
+
+          </tr>
+
+          {% endfor %}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+  {% else %}
+
+  <h2 style="text-align:center;margin-top:40px;">❌ Records Not Found</h2>
+
+  {% endif %}
+
+</body>
+
+</html>

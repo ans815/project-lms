@@ -1,227 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Registration</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
-}
+  <meta charset="UTF-8">
+  <title>Student Registration</title>
 
-body{
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  /* Animated Gradient Background */
-  background: linear-gradient(-45deg,#667eea,#764ba2,#6dd5ed,#2193b0);
-  background-size:400% 400%;
-  animation:gradientMove 12s ease infinite;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Roboto, Arial;
+    }
 
-@keyframes gradientMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+    body {
+      background: linear-gradient(135deg, #eef2f7, #d7e1ec);
+      min-height: 100vh;
+    }
 
-}
+    /* NAVBAR */
 
-/* Container */
-.container{
-  width:420px;
-  padding:35px;
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(15px);
-  border-radius:15px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.3);
-  animation:fadeIn 1s ease;
-}
+    .navbar {
+      background: linear-gradient(45deg, #4b6cb7, #182848);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+    }
 
-/* Fade Animation */
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-@keyframes fadeIn{
-  from{
-  opacity:0;
-  transform:translateY(40px);
-  }
-  to{
-  opacity:1;
-  transform:translateY(0);
-  }
-}
+    .logo img {
+      width: 35px;
+    }
 
-.container h1{
-  text-align:center;
-  color:white;
-  margin-bottom:25px;
-  font-weight:600;
-}
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+    }
 
-/* Labels */
+    .nav-buttons a {
+      text-decoration: none;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      transition: .3s;
+      font-size: 14px;
+    }
 
-label{
-  color:white;
-  font-size:14px;
-  margin-bottom:5px;
-  display:block;
-}
+    .nav-buttons a:hover {
+      background: white;
+      color: #182848;
+    }
 
-/* Inputs */
+    /* PAGE */
 
-input{
-  width:100%;
-  padding:12px;
-  margin-bottom:15px;
-  border:none;
-  border-radius:8px;
-  background:rgba(255,255,255,0.85);
-  font-size:14px;
-  transition:0.3s;
-}
+    .page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 85vh;
+      padding: 40px;
+    }
 
-input:focus{
-  outline:none;
-  background:white;
-  box-shadow:0 0 8px rgba(0,123,255,0.7);
-  transform:scale(1.02);
-}
+    /* CARD */
 
-/* Buttons */
-.buttons{
-  display:flex;
-  justify-content:space-between;
-  margin-top:10px;
-}
+    .container {
 
-button{
-  width:48%;
-  padding:12px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  font-size:15px;
-  font-weight:500;
-  transition:0.3s;
-}
+      width: 430px;
+      padding: 40px;
 
-/* Register Button */
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(14px);
 
-button[type="submit"]{
-  background:linear-gradient(45deg,#4facfe,#00f2fe);
-  color:white;
+      border-radius: 16px;
 
-}
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 
-button[type="submit"]:hover{
-  transform:translateY(-3px);
-  box-shadow:0 8px 20px rgba(0,0,0,0.3);
-}
+      transition: .3s;
+    }
 
-/* Reset Button */
+    .container:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
 
-button[type="reset"]{
-  background:#6c757d;
-  color:white;
-}
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 600;
+      color: #2d3436;
+    }
 
-button[type="reset"]:hover{
-  background:#555;
-}
+    /* INPUT */
 
-/* Login link */
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
 
-.login-link{
-  text-align:center;
-  margin-top:18px;
-  color:white;
-}
+    .input-group i {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      color: #777;
+      font-size: 14px;
+    }
 
-.login-link a{
-  color:white;
-  font-weight:600;
-  text-decoration:none;
-}
+    .input-group input,
+    .input-group textarea {
 
-.login-link a:hover{
-  text-decoration:underline;
-}
+      width: 100%;
+      padding: 11px 12px 11px 38px;
 
-/* Success and Error Message */
-.message{
-  text-align:center;
-  padding:10px;
-  margin-bottom:15px;
-  border-radius:6px;
-  font-size:14px;
-}
+      border: 1px solid #ddd;
+      border-radius: 8px;
 
-.success{
-  background:#d4edda;
-  color:#155724;
+      font-size: 14px;
 
-}
+      outline: none;
 
-.error{
-  background:#f8d7da;
-  color:#721c24;
-}
+      transition: .25s;
+      background: white;
+    }
 
-/* Mobile Responsive */
+    .input-group textarea {
+      resize: none;
+      height: 70px;
+    }
 
-@media(max-width:450px){
-  .container{
-  width:90%;
-  }
-}
-</style>
+    .input-group input:focus,
+    .input-group textarea:focus {
+
+      border-color: #4b6cb7;
+      box-shadow: 0 0 0 3px rgba(75, 108, 183, 0.1);
+
+    }
+
+    /* BUTTONS */
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+
+      flex: 1;
+
+      padding: 12px;
+
+      border: none;
+      border-radius: 8px;
+
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+
+      cursor: pointer;
+
+      transition: .3s;
+
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .submit-btn {
+      background: linear-gradient(45deg, #28a745, #1e7e34);
+    }
+
+    .reset-btn {
+      background: linear-gradient(45deg, #dc3545, #a71d2a);
+    }
+
+    button:hover {
+
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+
+    }
+
+    /* LOGIN LINK */
+
+    .login-link {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    .login-link a {
+      color: #4b6cb7;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:500px) {
+
+      .container {
+        width: 100%;
+        padding: 30px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container">
-  <h1>Student Registration</h1>
-  <!-- Dynamic message (Flask / Django) -->
-  {% if message %}
-  <div class="message {{message_type}}">
-  {{message}}
+
+  <!-- NAVBAR -->
+
+  <div class="navbar">
+
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png">
+      Library System
+    </div>
+
+    <div class="nav-buttons">
+      <a href="/"><i class="fa fa-home"></i> Home</a>
+      <a href="#"><i class="fa fa-book"></i> Books</a>
+      <a href="#"><i class="fa fa-chart-line"></i> Dashboard</a>
+    </div>
+
   </div>
-  {% endif %}
 
-<form method="POST">
-      <label for="stu_name">Student Name</label>
-      <input type="text" name="stu_name" id="stu_name" placeholder="Enter your full name" required>
 
-      <label for="stu_age">Student Age</label>
-      <input type="number" name="stu_age" id="stu_age" placeholder="Enter your age" min="5" max="100" required>
+  <!-- PAGE -->
 
-      <label for="stu_email">Email</label>
-      <input type="email" name="stu_email" id="stu_email" placeholder="Enter your email" required>
+  <div class="page">
 
-      <label for="stu_phone">Mobile Number</label>
-      <input type="tel" name="stu_phone" id="stu_phone" placeholder="Enter your mobile number" pattern="[0-9]{10}" required>
+    <div class="container">
 
-      <label for="stu_address">Address</label>
-      <input type="text" name="stu_address" id="stu_address" placeholder="Enter your address" required>
+      <h2>Student Registration</h2>
 
-      <label for="stu_password">Password</label>
-      <input type="password" name="stu_password" id="stu_password" placeholder="Enter password" required>
+      <form action="" method="post">
 
-      <div class="buttons">
-        <button type="submit">Register</button>
-        <button type="reset">Reset</button>
+        <div class="input-group">
+          <i class="fa fa-user"></i>
+          <input type="text" name="stu_name" placeholder="Full Name" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fa fa-calendar"></i>
+          <input type="date" name="stu_age" placeholder="Student Age" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fa fa-envelope"></i>
+          <input type="email" name="stu_email" placeholder="Student Email" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fa fa-lock"></i>
+          <input type="text" name="stu_password" placeholder="Student Password" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fa fa-phone"></i>
+          <input type="number" name="stu_phone" placeholder="Mobile Number" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fa fa-location-dot"></i>
+          <textarea name="stu_address" placeholder="Student Address" required></textarea>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="submit-btn">
+            <i class="fa fa-user-plus"></i> Register
+          </button>
+
+          <button type="reset" class="reset-btn">
+            <i class="fa fa-rotate"></i> Reset
+          </button>
+        </div>
+
+      </form>
+
+      <div class="login-link">
+        Already registered?
+        <a href="{{url_for('student.student_login')}}">Login Here</a>
       </div>
-    </form>
 
-  <div class="login-link">
+    </div>
 
-  Already have account?
-  <a href="/login">Login</a>
-</div>
-</div>
+  </div>
+
 </body>
+
 </html>

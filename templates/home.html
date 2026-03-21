@@ -1,232 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Library Dashboard</title>
-  <!-- SweetAlert2 for dynamic popups -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    /* Global Styles */
-    body {
-      margin: 0;
-      font-family: 'Roboto', Arial, sans-serif;
-      background-color: #f4f6f9;
-    }
+    <meta charset="UTF-8">
+    <title>Library Dashboard</title>
 
-    /* Navbar */
-    .navbar {
-      background: linear-gradient(90deg, #4b6cb7, #182848);
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 25px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    .logo {
-      display: flex;
-      align-items: center;
-      font-size: 22px;
-      font-weight: bold;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Roboto, Arial;
+        }
 
-    .logo img {
-      width: 35px;
-      margin-right: 10px;
-    }
+        body {
+            background: linear-gradient(135deg, #eef2f7, #d7e1ec);
+            min-height: 100vh;
+        }
 
-    .profile img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
+        /* NAVBAR */
 
-    .profile img:hover {
-      transform: scale(1.1);
-    }
+        .navbar {
+            background: linear-gradient(45deg, #4b6cb7, #182848);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+        }
 
-    /* Main Layout */
-    .container {
-      display: flex;
-      height: 80vh;
-      padding: 20px;
-      gap: 20px;
-    }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .content {
-      flex: 1;
-      padding: 30px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 1s ease forwards;
-      opacity: 0;
-    }
+        .logo img {
+            width: 35px;
+        }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
 
-    .content h2 {
-      margin-top: 0;
-    }
+        .nav-buttons a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            transition: .3s;
+            font-size: 14px;
+        }
 
-    /* Right Panel */
-    .right-panel {
-      width: 260px;
-      background-color: #fff;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      border-radius: 12px;
-      padding: 25px;
-      position: sticky;
-      top: 20px;
-      transition: transform 0.3s ease;
-    }
+        .nav-buttons a:hover {
+            background: white;
+            color: #182848;
+        }
 
-    .right-panel:hover {
-      transform: translateY(-5px);
-    }
+        /* HERO */
 
-    .right-panel h3 {
-      margin-top: 0;
-      margin-bottom: 20px;
-      text-align: center;
-      color: #182848;
-    }
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
 
-    /* Buttons */
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      text-align: center;
-      text-decoration: none;
-      color: white;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #2d3436;
+        }
 
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
-    }
+        .hero p {
+            color: #555;
+        }
 
-    .btn1 {
-      background-color: #007bff;
-    }
+        /* DASHBOARD GRID */
 
-    .btn1:hover {
-      background-color: #0056b3;
-    }
+        .dashboard {
 
-    .btn2 {
-      background-color: #28a745;
-    }
+            display: grid;
 
-    .btn2:hover {
-      background-color: #1e7e34;
-    }
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 
-    .btn3 {
-      background-color: #ffc107;
-      color: #182848;
-    }
+            gap: 25px;
 
-    .btn3:hover {
-      background-color: #e0a800;
-    }
+            padding: 40px;
+        }
 
-    /* Footer */
-    .footer {
-      background-color: #343a40;
-      color: white;
-      text-align: center;
-      padding: 12px;
-    }
-  </style>
+        /* CARD */
+
+        .card {
+
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            text-align: center;
+
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+
+            transition: .3s;
+        }
+
+        .card:hover {
+
+            transform: translateY(-6px);
+
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+
+        }
+
+        /* ICON */
+
+        .card i {
+            font-size: 30px;
+            margin-bottom: 15px;
+            color: #4b6cb7;
+        }
+
+        /* TITLE */
+
+        .card h3 {
+            margin-bottom: 18px;
+            color: #333;
+        }
+
+        /* BUTTON */
+
+        .card a {
+
+            text-decoration: none;
+
+            padding: 10px 20px;
+
+            border-radius: 8px;
+
+            color: white;
+
+            font-size: 14px;
+
+            display: inline-block;
+
+            transition: .3s;
+
+        }
+
+        /* COLORS */
+
+        .student {
+            background: linear-gradient(45deg, #28a745, #1e7e34);
+        }
+
+        .author {
+            background: linear-gradient(45deg, #17a2b8, #117a8b);
+        }
+
+        .book {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+        }
+
+        .logout {
+            background: linear-gradient(45deg, #dc3545, #a71d2a);
+        }
+
+        .card a:hover {
+            transform: scale(1.05);
+        }
+
+        /* FOOTER */
+
+        .footer {
+            background: #182848;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:500px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+        }
+    </style>
+
 </head>
 
 <body>
 
-  <!-- Navbar -->
-  <div class="navbar">
-    <div class="logo">
-      <a href="https://www.flaticon.com/free-icons/book" target="_blank" style="color: #fff; text-decoration: underline;">📚</a>
-      Library Dashboard
-    </div>
-    <div class="profile">
-      <!-- <img src="{{ url_for('static', filename='images/profile.png') }}" alt="Profile Picture"> -->
-  <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" 
-     alt="Profile Icon" style="width:40px; height:40px; border-radius:50%;">
-     <!-- <img src="https://ui-avatars.com/api/?name=A+G&background=4b6cb7&color=fff&size=128" 
-     alt="Profile Avatar" style="width:40px; height:40px; border-radius:50%;"> -->
-    </div>
-  </div>
+    <!-- NAVBAR -->
 
-  <!-- Main Section -->
-  <div class="container">
+    <div class="navbar">
 
-    <!-- Left Content -->
-    <div class="content">
-      <h2>Welcome to Library Management System</h2>
-      <p>
-        This dashboard allows you to manage books, students, and authors.
-        Use the action buttons on the right side to perform operations quickly.
-      </p>
+        <div class="logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png">
+            Library System
+        </div>
+
+        <div class="nav-buttons">
+            <a href="/"><i class="fa fa-home"></i> Home</a>
+            <a href="#"><i class="fa fa-book"></i> Books</a>
+            <a href="#"><i class="fa fa-chart-line"></i> Dashboard</a>
+        </div>
+
     </div>
 
-    <!-- Right Side Panel -->
-    <div class="right-panel">
-      <h3>Quick Actions</h3>
-      <a href="{{ url_for('student.student_register') }}" class="btn btn2">Register Student</a>
-      <a href="{{ url_for('author.author_register') }}" class="btn btn3">Register Author</a>
-      <a href="{{ url_for('student.all_students_data') }}" class="btn btn1">Show Students</a>
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+        <h1>📚 Library Management Dashboard</h1>
+
+        <p>Manage Students, Authors and Books easily from one place.</p>
+
     </div>
 
-  </div>
 
-  <!-- Footer -->
-  <div class="footer">
-    © 2026 Library Management System | Designed by You 🚀
-  </div>
+    <!-- DASHBOARD -->
 
-  <!-- JS: Dynamic Greeting & SweetAlert Buttons -->
-  <script>
-    // Add a dynamic greeting message
-    document.addEventListener('DOMContentLoaded', () => {
-      const greeting = document.createElement('p');
-      greeting.textContent = "Hello, Anshu! Ready to manage your library today?";
-      greeting.style.fontWeight = "bold";
-      greeting.style.fontSize = "18px";
-      greeting.style.marginBottom = "15px";
-      document.querySelector('.content').prepend(greeting);
+    <div class="dashboard">
 
-      // SweetAlert for button clicks
-      document.querySelectorAll('.btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          Swal.fire({
-            title: 'Redirecting...',
-            text: 'You will be taken to the form shortly!',
-            icon: 'info',
-            timer: 1000,
-            showConfirmButton: false
-          }).then(() => {
-            window.location.href = btn.href;
-          });
-        });
-      });
-    });
-  </script>
+        <div class="card">
+            <i class="fa fa-user-graduate"></i>
+            <h3>Student Register</h3>
+            <a href="{{url_for('student.student_register')}}" class="student">Register</a>
+        </div>
+
+        <div class="card">
+            <i class="fa fa-right-to-bracket"></i>
+            <h3>Student Login</h3>
+            <a href="{{url_for('student.student_login')}}" class="student">Login</a>
+        </div>
+
+        <div class="card">
+            <i class="fa fa-users"></i>
+            <h3>All Students</h3>
+            <a href="{{url_for('student.all_students_data')}}" class="book">View</a>
+        </div>
+
+        <div class="card">
+            <i class="fa fa-user-graduate"></i>
+            <h3>Author Register</h3>
+            <a href="{{url_for('author.author_register')}}" class="author">Register</a>
+        </div>
+
+        <div class="card">
+            <i class="fa fa-right-to-bracket"></i>
+            <h3>Author Login</h3>
+            <a href="{{url_for('author.author_login')}}" class="author">Login</a>
+        </div>
+
+        <div class="card">
+            <i class="fa fa-users"></i>
+            <h3>All Authors</h3>
+            <a href="{{url_for('author.all_authors_data')}}" class="book">View</a>
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+        © 2026 Library Management System 🚀
+    </div>
 
 </body>
 

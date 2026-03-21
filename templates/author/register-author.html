@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Author Registration</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Roboto, Arial;
+    }
+
+    body {
+      background: linear-gradient(135deg, #eef2f7, #d7e1ec);
+      min-height: 100vh;
+    }
+
+    /* NAVBAR */
+
+    .navbar {
+      background: linear-gradient(45deg, #4b6cb7, #182848);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 35px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .nav-buttons a {
+      text-decoration: none;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      transition: .3s;
+      font-size: 14px;
+    }
+
+    .nav-buttons a:hover {
+      background: white;
+      color: #182848;
+    }
+
+    /* PAGE */
+
+    .page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 85vh;
+      padding: 40px;
+    }
+
+    /* CARD */
+
+    .container {
+
+      width: 430px;
+      padding: 40px;
+
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(14px);
+
+      border-radius: 16px;
+
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+
+      transition: .3s;
+    }
+
+    .container:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 600;
+      color: #2d3436;
+    }
+
+    /* INPUT GROUP */
+
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .input-group i {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .input-group input,
+    .input-group textarea {
+
+      width: 100%;
+      padding: 11px 12px 11px 38px;
+
+      border: 1px solid #ddd;
+      border-radius: 8px;
+
+      font-size: 14px;
+
+      outline: none;
+
+      transition: .25s;
+
+      background: white;
+    }
+
+    .input-group textarea {
+      resize: none;
+      height: 70px;
+    }
+
+    .input-group input:focus,
+    .input-group textarea:focus {
+
+      border-color: #4b6cb7;
+      box-shadow: 0 0 0 3px rgba(75, 108, 183, 0.1);
+    }
+
+    /* BUTTON GROUP */
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+
+      flex: 1;
+
+      padding: 12px;
+
+      border: none;
+      border-radius: 8px;
+
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+
+      cursor: pointer;
+
+      transition: .3s;
+
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .submit-btn {
+      background: linear-gradient(45deg, #28a745, #1e7e34);
+    }
+
+    .reset-btn {
+      background: linear-gradient(45deg, #dc3545, #a71d2a);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    /* LOGIN LINK */
+
+    .login-link {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    .login-link a {
+      color: #4b6cb7;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:500px) {
+
+      .container {
+        width: 100%;
+        padding: 30px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <div class="navbar">
+
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png">
+      Library System
+    </div>
+
+    <div class="nav-buttons">
+      <a href="/"><i class="fa fa-home"></i> Home</a>
+      <a href="#"><i class="fa fa-book"></i> Books</a>
+      <a href="#"><i class="fa fa-chart-line"></i> Dashboard</a>
+    </div>
+
+  </div>
+
+  <!-- PAGE -->
+
+  <div class="page">
+
+    <div class="container">
+
+      <h2>Author Registration</h2>
+
+      <form method="post">
+
+        <div class="input-group">
+          <i class="fa fa-user"></i>
+          <input type="text" name="auth_name" placeholder="Full Name" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fa fa-calendar"></i>
+          <input type="date" name="auth_age" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fa fa-envelope"></i>
+          <input type="email" name="auth_email" placeholder="Author Email" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fa fa-phone"></i>
+          <input type="number" name="auth_phone" placeholder="Mobile Number" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fa fa-location-dot"></i>
+          <textarea name="auth_address" placeholder="Author Address" required></textarea>
+        </div>
+
+        <div class="button-group">
+
+          <button type="submit" class="submit-btn">
+            <i class="fa fa-user-plus"></i> Register
+          </button>
+
+          <button type="reset" class="reset-btn">
+            <i class="fa fa-rotate"></i> Reset
+          </button>
+
+        </div>
+
+      </form>
+
+      <div class="login-link">
+        Already registered?
+        <a href="{{url_for('author.author_login')}}">Login Here</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>

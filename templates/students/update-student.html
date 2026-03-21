@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Update Student</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI", Roboto, Arial;
+}
+
+body{
+background:linear-gradient(135deg,#eef2f7,#d7e1ec);
+min-height:100vh;
+}
+
+/* NAVBAR */
+
+.navbar{
+background:linear-gradient(45deg,#4b6cb7,#182848);
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:35px;
+}
+
+.nav-buttons{
+display:flex;
+gap:12px;
+}
+
+.nav-buttons a{
+text-decoration:none;
+color:white;
+padding:8px 15px;
+border-radius:20px;
+background:rgba(255,255,255,0.15);
+transition:.3s;
+font-size:14px;
+}
+
+.nav-buttons a:hover{
+background:white;
+color:#182848;
+}
+
+/* PAGE */
+
+.page{
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:85vh;
+padding:30px;
+}
+
+/* CARD */
+
+.container{
+
+width:420px;
+
+background:rgba(255,255,255,0.8);
+backdrop-filter:blur(10px);
+
+padding:35px;
+
+border-radius:16px;
+
+box-shadow:0 8px 25px rgba(0,0,0,0.15);
+
+transition:.3s;
+}
+
+.container:hover{
+transform:translateY(-5px);
+}
+
+/* TITLE */
+
+h2{
+text-align:center;
+margin-bottom:25px;
+color:#2d3436;
+}
+
+/* FORM */
+
+.form-group{
+margin-bottom:18px;
+}
+
+label{
+display:block;
+font-size:13px;
+margin-bottom:6px;
+color:#555;
+}
+
+input, textarea{
+
+width:100%;
+
+padding:11px;
+
+border-radius:8px;
+
+border:1px solid #ccc;
+
+font-size:14px;
+
+transition:.3s;
+}
+
+textarea{
+resize:none;
+height:70px;
+}
+
+input:focus, textarea:focus{
+border-color:#4b6cb7;
+box-shadow:0 0 0 2px rgba(75,108,183,0.2);
+outline:none;
+}
+
+/* BUTTON */
+
+button{
+
+width:100%;
+
+margin-top:12px;
+
+padding:12px;
+
+background:linear-gradient(45deg,#4b6cb7,#182848);
+
+border:none;
+
+color:white;
+
+font-size:15px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.03);
+box-shadow:0 6px 20px rgba(0,0,0,0.2);
+}
+
+button i{
+margin-right:6px;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+.navbar{
+flex-direction:column;
+gap:10px;
+}
+
+.container{
+width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="logo">
+<img src="https://cdn-icons-png.flaticon.com/512/29/29302.png">
+Library System
+</div>
+
+<div class="nav-buttons">
+<a href="/"><i class="fa fa-home"></i> Home</a>
+<a href="#"><i class="fa fa-book"></i> Books</a>
+<a href="#"><i class="fa fa-chart-line"></i> Dashboard</a>
+</div>
+
+</div>
+
+
+<!-- FORM -->
+
+<div class="page">
+
+<div class="container">
+
+<h2>Update Student</h2>
+
+<form method="POST">
+
+<div class="form-group">
+<label>Name</label>
+<input type="text" name="stu_name" value="{{student.stu_name}}">
+</div>
+
+<div class="form-group">
+<label>Date of Birth</label>
+<input type="date" name="stu_age" value="{{student.stu_age}}">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input type="email" name="stu_email" value="{{student.stu_email}}">
+</div>
+
+<div class="form-group">
+<label>Phone</label>
+<input type="text" name="stu_phone" value="{{student.stu_phone}}">
+</div>
+
+<div class="form-group">
+<label>Address</label>
+<textarea name="stu_address">{{student.stu_address}}</textarea>
+</div>
+
+<button type="submit">
+<i class="fa fa-pen"></i> Update Student
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+</html>

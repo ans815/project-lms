@@ -1,50 +1,374 @@
+<!DOCTYPE html>
+<html>
 
-<h1 style="text-align: center;">All Students</h1>
+<head>
 
-<table cellpadding="3" border="1" style="width: 100%; border-collapse: collapse;">
+  <title>All Students</title>
 
-<tr>
-<th>ID</th>
-<th>Name</th>
-<th>Age</th>
-<th>Email</th>
-<th>Phone</th>
-<th>Address</th>
-<th colspan="3">Action</th>
-</tr>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% for student in students %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<tr>
-<td>{{ student.id }}</td>
-<td>{{ student.stu_name }}</td>
-<td>{{ student.stu_age }}</td>
-<td>{{ student.stu_email }}</td>
-<td>{{ student.stu_phone }}</td>
-<td>{{ student.stu_address }}</td>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial;
+    }
 
-<td>
-<a href="{{ url_for('student.students_details', id=student.id) }}">
-<button>Read</button>
-</a>
-</td>
+    body {
+      background: linear-gradient(135deg, #eef2f7, #dce7f3);
+      min-height: 100vh;
+    }
 
-<td>
-<a href="">
-<button>Delete</button>
-</a>
-</td>
+    /* NAVBAR */
 
-<td>
-<a href="">
-<button>Update</button>
-</a>
-</td>
+    .navbar {
+      background: linear-gradient(45deg, #4b6cb7, #182848);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      flex-wrap: wrap;
+    }
 
-</tr>
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-</tr>
+    .logo img {
+      width: 35px;
+    }
 
-{% endfor %}
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-</table>
+    .nav-buttons a {
+      text-decoration: none;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.15);
+      transition: .3s;
+      font-size: 14px;
+    }
+
+    .nav-buttons a:hover {
+      background: white;
+      color: #182848;
+    }
+
+    /* HEADER */
+
+    .page-header {
+      width: 95%;
+      margin: 25px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .page-header h2 {
+      color: #333;
+    }
+
+    /* SEARCH */
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-box input {
+      padding: 10px 35px 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .search-box i {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      color: #555;
+    }
+
+    /* TABLE */
+
+    .table-container {
+
+      width: 95%;
+
+      margin: auto;
+
+      background: rgba(255, 255, 255, 0.8);
+
+      backdrop-filter: blur(10px);
+
+      padding: 25px;
+
+      border-radius: 14px;
+
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 750px;
+    }
+
+    th,
+    td {
+      padding: 14px;
+      text-align: center;
+    }
+
+    th {
+      background: #4b6cb7;
+      color: white;
+      font-size: 15px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #eee;
+    }
+
+    tr:nth-child(even) {
+      background: #f8f9ff;
+    }
+
+    tr:hover {
+      background: #eaf0ff;
+      transition: .2s;
+    }
+
+    /* ACTION BUTTONS */
+
+    .action-btn {
+
+      border: none;
+
+      padding: 7px 14px;
+
+      border-radius: 8px;
+
+      font-size: 13px;
+
+      cursor: pointer;
+
+      margin: 3px;
+
+      color: white;
+
+      transition: .2s;
+
+    }
+
+    .read {
+      background: linear-gradient(45deg, #2ecc71, #27ae60);
+    }
+
+    .delete {
+      background: linear-gradient(45deg, #e74c3c, #c0392b);
+    }
+
+    .update {
+      background: linear-gradient(45deg, #f39c12, #d68910);
+    }
+
+    .action-btn:hover {
+      transform: scale(1.08);
+    }
+
+    /* MOBILE CARD VIEW */
+
+    @media(max-width:768px) {
+
+      table,
+      thead,
+      tbody,
+      th,
+      td,
+      tr {
+        display: block;
+        width: 100%;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        background: white;
+        margin-bottom: 15px;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      td {
+        text-align: left;
+        padding: 8px;
+      }
+
+      td::before {
+        font-weight: bold;
+        display: block;
+        color: #555;
+      }
+
+      td:nth-child(1)::before {
+        content: "ID";
+      }
+
+      td:nth-child(2)::before {
+        content: "Name";
+      }
+
+      td:nth-child(3)::before {
+        content: "Age";
+      }
+
+      td:nth-child(4)::before {
+        content: "Email";
+      }
+
+      td:nth-child(5)::before {
+        content: "Phone";
+      }
+
+      td:nth-child(6)::before {
+        content: "Address";
+      }
+
+      td:nth-child(7)::before {
+        content: "Action";
+      }
+
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <div class="navbar">
+
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png">
+      Library System
+    </div>
+
+    <div class="nav-buttons">
+      <a href="/"><i class="fa fa-home"></i> Home</a>
+      <a href="#"><i class="fa fa-book"></i> Books</a>
+      <a href="#"><i class="fa fa-chart-line"></i> Dashboard</a>
+    </div>
+
+  </div>
+
+
+  {% if students %}
+
+  <div class="page-header">
+
+    <h2>📚 Student Records</h2>
+
+    <div class="search-box">
+      <input type="text" placeholder="Search student...">
+      <i class="fa fa-search"></i>
+    </div>
+
+  </div>
+
+  <div class="table-container">
+
+    <div class="table-responsive">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Action</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          {% for student in students %}
+
+          <tr>
+
+            <td>{{ student.id }}</td>
+            <td>{{ student.stu_name }}</td>
+            <td>{{ student.stu_age }}</td>
+            <td>{{ student.stu_email }}</td>
+            <td>{{ student.stu_phone }}</td>
+            <td>{{ student.stu_address }}</td>
+
+            <td>
+
+              <a href="{{url_for('student.students_details', id = student.id )}}">
+                <button class="action-btn read">
+                  <i class="fa fa-eye"></i> Read
+                </button>
+              </a>
+
+              <a href="{{ url_for('student.delete_student', id=student.id) }}">
+                <button class="action-btn delete">
+                  <i class="fa fa-trash"></i> Delete
+                </button>
+              </a>
+
+              <a href="{{ url_for('student.update_student', id=student.id) }}">
+                <button class="action-btn update">
+                  <i class="fa fa-pen"></i> Update
+                </button>
+              </a>
+
+            </td>
+
+          </tr>
+
+          {% endfor %}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+  {% else %}
+
+  <h2 style="text-align:center;margin-top:40px;">❌ Records Not Found</h2>
+
+  {% endif %}
+
+</body>
+
+</html>

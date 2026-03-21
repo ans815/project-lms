@@ -1,29 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Author Login</title>
-<style>
-body { font-family: Arial; background:#f4f6f9; display:flex; justify-content:center; align-items:center; height:100vh;}
-.container { width:400px; background:white; padding:30px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);}
-h1{text-align:center; margin-bottom:20px;}
-input{width:100%; padding:10px; margin:10px 0; border-radius:5px; border:1px solid #ccc;}
-button{width:100%; padding:10px; background:#ffc107; color:white; border:none; border-radius:5px; cursor:pointer;}
-button:hover{background:#e0a800;}
-</style>
+  <meta charset="UTF-8">
+  <title>Author Login</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Roboto, Arial;
+    }
+
+    body {
+      background: linear-gradient(135deg, #eef2f7, #d7e1ec);
+      min-height: 100vh;
+    }
+
+    /* NAVBAR */
+
+    .navbar {
+      background: linear-gradient(45deg, #4b6cb7, #182848);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 35px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .nav-buttons a {
+      text-decoration: none;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      transition: .3s;
+      font-size: 14px;
+    }
+
+    .nav-buttons a:hover {
+      background: white;
+      color: #182848;
+    }
+
+    /* PAGE */
+
+    .page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 85vh;
+      padding: 40px;
+    }
+
+    /* CARD */
+
+    .container {
+
+      width: 400px;
+      padding: 40px;
+
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(14px);
+
+      border-radius: 16px;
+
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+
+      transition: .3s;
+    }
+
+    .container:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 600;
+      color: #2d3436;
+    }
+
+    /* INPUT GROUP */
+
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .input-group i {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .input-group input {
+
+      width: 100%;
+      padding: 11px 12px 11px 38px;
+
+      border: 1px solid #ddd;
+      border-radius: 8px;
+
+      font-size: 14px;
+
+      outline: none;
+
+      transition: .25s;
+      background: white;
+    }
+
+    .input-group input:focus {
+
+      border-color: #6f42c1;
+      box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.1);
+
+    }
+
+    /* BUTTON */
+
+    button {
+
+      width: 100%;
+      padding: 12px;
+
+      border: none;
+      border-radius: 8px;
+
+      background: linear-gradient(45deg, #6f42c1, #4b2d8c);
+
+      color: white;
+      font-size: 15px;
+      font-weight: 500;
+
+      cursor: pointer;
+
+      transition: .3s;
+
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+
+    }
+
+    /* REGISTER LINK */
+
+    .register-link {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    .register-link a {
+      color: #4b6cb7;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:500px) {
+
+      .container {
+        width: 100%;
+        padding: 30px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+    }
+  </style>
 </head>
+
 <body>
-<div class="container">
-<h1>Author Login</h1>
-<form method="POST" action="{{ url_for('author.author_login') }}">
-    <input type="email" name="email" placeholder="Enter email" required>
-    <input type="password" name="password" placeholder="Enter password" required>
-    <button type="submit">Login</button>
-</form>
-<div class="login-link">
-    <a href="{{ url_for('author.author_register') }}">Don't have an account? Register</a>
-</div>
-</div>
+
+  <!-- NAVBAR -->
+
+  <div class="navbar">
+
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png">
+      Library System
+    </div>
+
+    <div class="nav-buttons">
+      <a href="/"><i class="fa fa-home"></i> Home</a>
+      <a href="#"><i class="fa fa-book"></i> Books</a>
+      <a href="#"><i class="fa fa-chart-line"></i> Dashboard</a>
+    </div>
+
+  </div>
+
+
+  <!-- LOGIN PAGE -->
+
+  <div class="page">
+
+    <div class="container">
+
+      <h2>Author Login</h2>
+
+      <form action="{{ url_for('author.author_login') }}" method="POST">
+
+        <div class="input-group">
+          <i class="fa fa-envelope"></i>
+          <input type="email" name="email" placeholder="Email Address" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fa fa-lock"></i>
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
+
+        <button type="submit">
+          <i class="fa fa-right-to-bracket"></i> Login
+        </button>
+
+      </form>
+
+      <div class="register-link">
+        Don't have an account?
+        <a href="{{url_for('author.author_register')}}">Register Here</a>
+      </div>
+
+    </div>
+
+  </div>
+
 </body>
+
 </html>
