@@ -1,5 +1,11 @@
-venv/
-anshuenv/
+# Python cache and environment files
 __pycache__/
 *.pyc
+
+# Environment variables
 .env
+
+# Python virtual environments
+anshuenv/
+myenv/
+venv/
