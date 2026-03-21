@@ -46,5 +46,5 @@ services:
 volumes:
   mysql_data:
 
-ports:
-  - "80:5000"
+# ports:
+#   - "80:5000"
